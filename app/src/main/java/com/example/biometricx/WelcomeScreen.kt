@@ -99,6 +99,15 @@ fun WelcomeScreen(
                 }
                 )
 
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            //Botón de prueba para llevar a la pantalla de los cuadros
+            CButton(text = "Chart Preview",
+                onClick = {
+                    navController.navigate("charts")
+                }
+            )
+
             DontHaveAccountRow(
                 onSignupTap = {
                     navController.navigate("signup")
