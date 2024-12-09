@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +33,8 @@ import com.example.biometricx.components.CTextField
 import com.example.biometricx.components.DontHaveAccountRow
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 @Composable
 fun SignupScreen(
@@ -93,16 +97,50 @@ fun SignupScreen(
                 )
 
 
-                // Text Field
-                CTextField(hint = "Full Name", value = "" )
+                // Text Fields
+                var nombre by remember { mutableStateOf("") }
+                var email2 by remember { mutableStateOf("") }
+                var password2 by remember { mutableStateOf("") }
 
-                CTextField(hint = "Email Address", value = "" )
+                CTextField( //Nombre con verificación de solo letras y longitud mayor a 5
+                    hint = "Nombre Completo",
+                    value = nombre,
+                    onValueChange = {
+                        if (it.matches(Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$"))
+                            && it.length >= 5) {
+                        nombre = it
+                        }
+                                    },
+                    textStyle = TextStyle(color = Color.White)
+                )
 
-                CTextField(hint = "Password", value = "" )
+                CTextField( //Email con verificación de formato
+                    hint = "Correo Electrónico",
+                    value = email2,
+                    onValueChange = {
+                        if (android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches()) {
+                            email2 = it
+                        }
+                        },
+                    textStyle = TextStyle(color = Color.White)
+                )
+
+                CTextField( //Contraseña con verificación de longitud mayor a 8 y al menos un número
+                    hint = "Contraseña",
+                    value = password2,
+                    onValueChange = {
+                        if(it.length >= 8 && it.any { char -> char.isDigit() }
+                            && it.any { char -> char.isLowerCase() }
+                            && it.any { char -> char.isUpperCase() }){
+                            password2 = it
+                        }
+                        },
+                    textStyle = TextStyle(color = Color.White)
+                )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                CButton(text = "Sign Up")
+                CButton(text = "Ingresar")
 
                 Row(
                     modifier = Modifier.padding(top=12.dp, bottom = 52.dp)

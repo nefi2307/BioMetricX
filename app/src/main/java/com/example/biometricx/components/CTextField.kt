@@ -20,19 +20,22 @@ fun CTextField(
     onValueChange: (String) -> Unit = {},
     hint: String,
     value: String,
+    textStyle: TextStyle = TextStyle.Default // Nuevo parámetro para textStyle
 ) {
     TextField(
         value = value,
         onValueChange = onValueChange,
         placeholder = {
-            Text(text = hint,
+            Text(
+                text = hint,
                 style = TextStyle(
                     fontSize = 18.sp,
                     fontFamily = AlegreyaSansFontFamily,
-                    color = Color(0xFFBEC2C2)
+                    color = Color.White // Color del placeholder
                 )
             )
         },
+        textStyle = textStyle, // Aplicar textStyle al TextField
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 8.dp),
@@ -41,6 +44,5 @@ fun CTextField(
             focusedIndicatorColor = Color(0xFFBEC2C2),
             unfocusedIndicatorColor = Color(0xFFBEC2C2)
         )
-
     )
 }
