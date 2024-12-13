@@ -74,7 +74,7 @@ fun WelcomeScreen(
             )
 
             Text(
-                "WELCOME",
+                "Bienvenido",
                 fontSize = 32.sp,
                 fontFamily = AlegreyaFontFamily,
                 fontWeight = FontWeight(700),
@@ -93,7 +93,7 @@ fun WelcomeScreen(
             Spacer(modifier = Modifier.weight(1f))
 
 
-            CButton(text = "Sign In With Email",
+            CButton(text = "Ingresa",
                 onClick = {
                     navController.navigate("login")
                 }

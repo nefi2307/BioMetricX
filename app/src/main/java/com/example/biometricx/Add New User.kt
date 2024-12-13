@@ -131,7 +131,7 @@ fun Screen() {
                     ),
                     modifier = Modifier.align(Alignment.Start)
                 )
-                CTextField(hint = "Ingrese el sexo de la persona", value = "")
+                CTextField(hint = "Ingrese el sexo de la persona", value = "", onValueChange = {})
 
                 Spacer(modifier = Modifier.padding(12.dp))
                 CButton(text = "Añadir")

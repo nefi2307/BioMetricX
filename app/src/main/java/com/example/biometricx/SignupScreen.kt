@@ -1,5 +1,6 @@
 package com.example.biometricx
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -14,28 +15,42 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.biometricx.components.CButton
 import com.example.biometricx.components.CTextField
+import com.example.biometricx.components.CTextFieldPassword
 import com.example.biometricx.components.DontHaveAccountRow
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
+import com.example.biometricx.ui.viewModels.RegisterViewModel
 
 @Composable
 fun SignupScreen(
     navController: NavHostController
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    var isLoading by remember { mutableStateOf(false) }
+    val viewModel: RegisterViewModel = viewModel()
+    val context = LocalContext.current
     Surface(
         color = Color(0xFF253334),
         modifier = Modifier.fillMaxSize()
@@ -71,7 +86,7 @@ fun SignupScreen(
                         .offset(x = (-20).dp)
                 )
 
-                Text(text = "Sign Up",
+                Text(text = "Registrate",
                     style = TextStyle(
                         fontSize = 28.sp,
                         fontFamily = AlegreyaFontFamily,
@@ -94,20 +109,35 @@ fun SignupScreen(
 
 
                 // Text Field
-                CTextField(hint = "Full Name", value = "" )
+                CTextField(hint = "Dirección Email", value = email, onValueChange = {email = it} )
 
-                CTextField(hint = "Email Address", value = "" )
+                CTextFieldPassword(hint = "Contraseña", value = password, onValueChange = {password = it})
 
-                CTextField(hint = "Password", value = "" )
+                CTextFieldPassword(hint = "Confirmar contraseña", value = confirmPassword, onValueChange = {confirmPassword = it} )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                CButton(text = "Sign Up")
-
+                CButton(text = "Registrar", onClick = {
+                    if(password == confirmPassword){
+                        viewModel.registerUser(
+                            email = email,
+                            password = password,
+                            onLoading = {isLoading = it},
+                            onSuccess = {navController.navigate("login")},
+                            onError = {
+                                Toast.makeText(
+                                    context,
+                                    "Error while creating the user",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        )
+                    }
+                })
                 Row(
                     modifier = Modifier.padding(top=12.dp, bottom = 52.dp)
                 ){
-                    Text("Already have an account? ",
+                    Text("Ya tienes una cuenta? ",
                         style = TextStyle(
                             fontSize = 18.sp,
                             fontFamily = AlegreyaSansFontFamily,
@@ -115,7 +145,7 @@ fun SignupScreen(
                         )
                     )
 
-                    Text("Sign In",
+                    Text("Ingresa",
                         style = TextStyle(
                             fontSize = 18.sp,
                             fontFamily = AlegreyaSansFontFamily,
