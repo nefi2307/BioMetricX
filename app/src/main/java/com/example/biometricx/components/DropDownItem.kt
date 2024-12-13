@@ -3,6 +3,7 @@ package com.example.biometricx.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -49,6 +50,7 @@ fun DropDownSex(lista: List<String>){
                 modifier = Modifier.menuAnchor(),
                 value =selectedText,
                 onValueChange = {},
+                shape = RoundedCornerShape(20.dp),
                 readOnly = true,
                 trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExtended) }
             )
