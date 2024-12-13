@@ -39,5 +39,6 @@ fun NavigationView() {
         composable("welcome") { WelcomeScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("signup") { SignupScreen(navController) }
+        composable("charts") { ChartsView(navController)}
     }
 }
