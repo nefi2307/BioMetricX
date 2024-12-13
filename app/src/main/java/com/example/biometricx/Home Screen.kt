@@ -112,6 +112,7 @@ fun PersonasList(personas: List<Persona>, navController: NavController) {
                         .padding(bottom = 16.dp)
                 )
 
+
                 // Lista de personas
                 LazyColumn(
                     modifier = Modifier
