@@ -28,7 +28,7 @@ fun ChartsView(
     navController: NavHostController
 ){
 
-    Box(//dylan
+    Box(//terminal
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.LightGray)
