@@ -27,10 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.biometricx.components.CButton
 import com.example.biometricx.components.CTextField
+import com.example.biometricx.components.DropDownSex
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 
 @Composable
-fun AddNewUser (){
+fun AddNewUser() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -43,12 +44,22 @@ fun AddNewUser (){
 fun Screen() {
     var namePerson by rememberSaveable { mutableStateOf("") }
     var age by rememberSaveable { mutableStateOf("") }
+    val parentescosImportantes = listOf(
+        "Padre",
+        "Madre",
+        "Hijo",
+        "Hija",
+        "Hermano",
+        "Hermana",
+        "Abuelo",
+        "Abuela"
+    )
+
 
     Surface(
         color = Color(0xFF253334),
         modifier = Modifier.fillMaxSize()
     ) {
-
 
         Box(modifier = Modifier.fillMaxSize())
         {
@@ -59,7 +70,7 @@ fun Screen() {
                     .fillMaxWidth()
                     .height(190.dp)
                     .align(Alignment.BottomCenter)
-                )
+            )
             Column(
                 modifier = Modifier
                     .padding(16.dp, 16.dp)
@@ -67,7 +78,6 @@ fun Screen() {
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-
 
                 Text(
                     text = "Añadir Persona",
@@ -82,65 +92,87 @@ fun Screen() {
 //-----------------------Nombre ----------------------------//
                 Spacer(modifier = Modifier.padding(8.dp))
 
-                Text(
-                    text = "Nombre",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
+                Column {
 
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = namePerson,
-                    onValueChange = { namePerson = it },
-                    placeholder = { Text(text = "Ej. Isaac Burciaga") }
-                )
-                Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Nombre",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+
+                    TextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = namePerson,
+                        onValueChange = { namePerson = it },
+                        placeholder = { Text(text = "Ej. Isaac Burciaga") }
+                    )
+                    Spacer(modifier = Modifier.padding(8.dp))
 //------------------ Edad ---------------------------------------- //
-                Text(
-                    text = "Edad",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
+                    Text(
+                        text = "Edad",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
 
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = age,
-                    onValueChange = { age = it },
-                    placeholder = { Text(text = "Ej. 18") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
+                    TextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = age,
+                        onValueChange = { age = it },
+                        placeholder = { Text(text = "Ej. 18") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
 // --------------------------- Sexo -------------------/
-                Spacer(modifier = Modifier.padding(8.dp))
-                Text(
-                    text = "Sexo",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
-                CTextField(hint = "Ingrese el sexo de la persona", value = "")
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Sexo",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+                    val sexs = listOf("Masculino", "Femenino")
+                    DropDownSex(lista = sexs)
 
-                Spacer(modifier = Modifier.padding(12.dp))
-                CButton(text = "Añadir")
+                    // ----------- Parentesco -------------/
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Parentesco",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+                    Spacer(modifier = Modifier.padding(8.dp))
+
+                    DropDownSex(parentescosImportantes)
+
+                    Spacer(modifier = Modifier.padding(12.dp))
+                    CButton(text = "Añadir persona")
+                }
+
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
- fun preview() {
+fun preview() {
     AddNewUser()
 }
