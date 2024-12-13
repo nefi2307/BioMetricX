@@ -43,6 +43,17 @@ fun AddNewUser (){
 fun Screen() {
     var namePerson by rememberSaveable { mutableStateOf("") }
     var age by rememberSaveable { mutableStateOf("") }
+    val parentescosImportantes = listOf(
+        "Padre",
+        "Madre",
+        "Hijo",
+        "Hija",
+        "Hermano",
+        "Hermana",
+        "Abuelo",
+        "Abuela"
+    )
+
 
     Surface(
         color = Color(0xFF253334),
@@ -120,25 +131,44 @@ fun Screen() {
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
 // --------------------------- Sexo -------------------/
-                Spacer(modifier = Modifier.padding(8.dp))
-                Text(
-                    text = "Sexo",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
-                CTextField(hint = "Ingrese el sexo de la persona", value = "", onValueChange = {})
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Sexo",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+                    val sexs = listOf("Masculino", "Femenino")
+                    DropDownSex(lista = sexs)
 
-                Spacer(modifier = Modifier.padding(12.dp))
-                CButton(text = "Añadir")
+                    // ----------- Parentesco -------------/
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Parentesco",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+                    Spacer(modifier = Modifier.padding(8.dp))
+
+                    DropDownSex(parentescosImportantes)
+
+                    Spacer(modifier = Modifier.padding(12.dp))
+                    CButton(text = "Añadir persona")
+                }
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
  fun preview() {
