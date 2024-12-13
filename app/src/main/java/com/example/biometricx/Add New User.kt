@@ -3,6 +3,7 @@ package com.example.biometricx
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -27,10 +29,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.biometricx.components.CButton
 import com.example.biometricx.components.CTextField
+import com.example.biometricx.components.DropDownSex
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 
 @Composable
-fun AddNewUser (){
+fun AddNewUser() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -60,7 +63,6 @@ fun Screen() {
         modifier = Modifier.fillMaxSize()
     ) {
 
-
         Box(modifier = Modifier.fillMaxSize())
         {
             Image(
@@ -70,7 +72,7 @@ fun Screen() {
                     .fillMaxWidth()
                     .height(190.dp)
                     .align(Alignment.BottomCenter)
-                )
+            )
             Column(
                 modifier = Modifier
                     .padding(16.dp, 16.dp)
@@ -78,7 +80,6 @@ fun Screen() {
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-
 
                 Text(
                     text = "Añadir Persona",
@@ -93,43 +94,45 @@ fun Screen() {
 //-----------------------Nombre ----------------------------//
                 Spacer(modifier = Modifier.padding(8.dp))
 
-                Text(
-                    text = "Nombre",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
+                Column {
 
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = namePerson,
-                    onValueChange = { namePerson = it },
-                    placeholder = { Text(text = "Ej. Isaac Burciaga") }
-                )
-                Spacer(modifier = Modifier.padding(8.dp))
+                    Text(
+                        text = "Nombre",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+
+                    TextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = namePerson,
+                        onValueChange = { namePerson = it },
+                        placeholder = { Text(text = "Ej. Isaac Burciaga") }
+                    )
+                    Spacer(modifier = Modifier.padding(8.dp))
 //------------------ Edad ---------------------------------------- //
-                Text(
-                    text = "Edad",
-                    style = TextStyle(
-                        fontSize = 28.sp,
-                        fontFamily = AlegreyaFontFamily,
-                        fontWeight = FontWeight(500),
-                        color = Color.White
-                    ),
-                    modifier = Modifier.align(Alignment.Start)
-                )
+                    Text(
+                        text = "Edad",
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = AlegreyaFontFamily,
+                            fontWeight = FontWeight(500),
+                            color = Color.White
+                        ),
+                        modifier = Modifier.align(Alignment.Start)
+                    )
 
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = age,
-                    onValueChange = { age = it },
-                    placeholder = { Text(text = "Ej. 18") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
+                    TextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = age,
+                        onValueChange = { age = it },
+                        placeholder = { Text(text = "Ej. 18") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
 // --------------------------- Sexo -------------------/
                     Spacer(modifier = Modifier.padding(8.dp))
                     Text(
@@ -164,6 +167,7 @@ fun Screen() {
                     Spacer(modifier = Modifier.padding(12.dp))
                     CButton(text = "Añadir persona")
                 }
+
             }
         }
     }
@@ -171,6 +175,6 @@ fun Screen() {
 
 @Preview(showBackground = true)
 @Composable
- fun preview() {
+fun preview() {
     AddNewUser()
 }
