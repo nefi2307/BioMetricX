@@ -38,8 +38,7 @@ import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
 fun LoginScreen(
     navController: NavHostController
 ) {
-
-
+    
     Surface(
         color = Color(0xFF253334),
         modifier = Modifier.fillMaxSize()

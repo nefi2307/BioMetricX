@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BioMetricX</string>
+    <string name="add_user">Añadir persona </string>
+    <string name="name_person">Nombre</string>
+    <string name="age_person">Edad</string>
+    <string name="sex_person">Sexo</string>
 </resources>
