@@ -16,7 +16,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.biometricx.ui.theme.MainApp
 import com.example.biometricx.SignupScreen
 import com.example.biometricx.WelcomeScreen
-import com.example.biometricx.data.Persona
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +39,6 @@ fun NavigationView() {
         composable("welcome") { WelcomeScreen(navController) }
         composable("login") { LoginScreen(navController) }
         composable("signup") { SignupScreen(navController) }
-        composable("home") { PersonasList(personas,navController)}
+        composable("charts") { ChartsView(navController)}
     }
 }
