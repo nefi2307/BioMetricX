@@ -54,7 +54,15 @@ val personas = listOf(
         registrosDeSalud = mutableListOf(
             RegistroSalud("2024-12-02", "7:30", 115, 75, 85, 36.3, "Buen estado general.")
         )
-    )
+    ),
+    Persona(
+        nombre = "Luisa Martínez",
+        edad = 30,
+        sexo = "F",
+        registrosDeSalud = mutableListOf(
+            RegistroSalud("2024-12-02", "7:30", 115, 75, 85, 36.3, "Buen estado general.")
+        )
+)
 )
 
 // Función para mostrar una lista de personas en un LazyColumn
