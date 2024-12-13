@@ -3,6 +3,7 @@ package com.example.biometricx
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -54,7 +56,6 @@ fun Screen() {
         "Abuelo",
         "Abuela"
     )
-
 
     Surface(
         color = Color(0xFF253334),
@@ -95,7 +96,7 @@ fun Screen() {
                 Column {
 
                     Text(
-                        text = "Nombre",
+                        text = "    Nombre",
                         style = TextStyle(
                             fontSize = 28.sp,
                             fontFamily = AlegreyaFontFamily,
@@ -104,17 +105,18 @@ fun Screen() {
                         ),
                         modifier = Modifier.align(Alignment.Start)
                     )
-
+                    Spacer(modifier = Modifier.padding(6.dp))
                     TextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = namePerson,
                         onValueChange = { namePerson = it },
-                        placeholder = { Text(text = "Ej. Isaac Burciaga") }
+                        placeholder = { Text(text = "Ej. Isaac Burciaga") },
+                        shape = RoundedCornerShape(20.dp)
                     )
                     Spacer(modifier = Modifier.padding(8.dp))
 //------------------ Edad ---------------------------------------- //
                     Text(
-                        text = "Edad",
+                        text = "    Edad",
                         style = TextStyle(
                             fontSize = 28.sp,
                             fontFamily = AlegreyaFontFamily,
@@ -123,18 +125,19 @@ fun Screen() {
                         ),
                         modifier = Modifier.align(Alignment.Start)
                     )
-
+                    Spacer(modifier = Modifier.padding(6.dp))
                     TextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = age,
                         onValueChange = { age = it },
                         placeholder = { Text(text = "Ej. 18") },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        shape = RoundedCornerShape(20.dp)
                     )
 // --------------------------- Sexo -------------------/
                     Spacer(modifier = Modifier.padding(8.dp))
                     Text(
-                        text = "Sexo",
+                        text = "    Sexo",
                         style = TextStyle(
                             fontSize = 28.sp,
                             fontFamily = AlegreyaFontFamily,
@@ -144,12 +147,13 @@ fun Screen() {
                         modifier = Modifier.align(Alignment.Start)
                     )
                     val sexs = listOf("Masculino", "Femenino")
-                    DropDownSex(lista = sexs)
 
+                    Spacer(modifier = Modifier.padding(8.dp))
+                    DropDownSex(lista = sexs)
                     // ----------- Parentesco -------------/
                     Spacer(modifier = Modifier.padding(8.dp))
                     Text(
-                        text = "Parentesco",
+                        text = "    Parentesco",
                         style = TextStyle(
                             fontSize = 28.sp,
                             fontFamily = AlegreyaFontFamily,
@@ -162,7 +166,7 @@ fun Screen() {
 
                     DropDownSex(parentescosImportantes)
 
-                    Spacer(modifier = Modifier.padding(12.dp))
+                    Spacer(modifier = Modifier.padding(16.dp))
                     CButton(text = "Añadir persona")
                 }
 

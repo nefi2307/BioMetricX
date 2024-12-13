@@ -16,14 +16,18 @@ import androidx.compose.material3.CardColors
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.biometricx.data.Persona
@@ -62,69 +66,78 @@ val personas = listOf(
         registrosDeSalud = mutableListOf(
             RegistroSalud("2024-12-02", "7:30", 115, 75, 85, 36.3, "Buen estado general.")
         )
+    )
 )
-)
-
-// Función para mostrar una lista de personas en un LazyColumn
 @Composable
 fun PersonasList(personas: List<Persona>, navController: NavController) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        // Column para mostrar el contenido principal
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF7C9A92))
-        ) {
-//            Image(
-//                painterResource(id = R.drawable.hi),
-//                contentDescription = "Logo",
-//                modifier = Modifier
-//                    .padding(16.dp)
-//                    .align(Alignment.CenterHorizontally)
-//            )
-
-            Box(modifier = Modifier
-                .padding()
-                .align(Alignment.CenterHorizontally)
-            ) {
-//Image(painterResource(id = R.drawable.hi) , contentDescription = "Hii")
-
-                Text(
-                    text = "Bienvenido Usuario",
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp, top = 15.dp),
-                    color = Color.Black,
-                    )
-            }
-            Box(
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            // Imagen de fondo que cubre toda la pantalla
+            Image(
+                painter = painterResource(id = R.drawable.bg),
+                contentDescription = "Fondo",
+                modifier = Modifier
+                    .fillMaxSize(), // Hace que la imagen ocupe todo el fondo
+                alignment = Alignment.Center,
+                contentScale = ContentScale.Crop
+            )
+            // Contenido principal
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
-                   // .border(1.dp, Color.Black, RoundedCornerShape(12.dp)) // Aplica el borde negro
             ) {
+                // Logo en la parte superior
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logo), // Imagen de la persona
+                        contentDescription = "Logo",
+                        modifier = Modifier.size(100.dp)
+                    )
+                }
+
+                // Texto de bienvenida
+                Text(
+                    text = "Bienvenido Usuario",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color.Black,
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(bottom = 16.dp)
+                )
+
+
+                // Lista de personas
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxSize()
                 ) {
                     items(personas) { persona ->
                         PersonaCard(persona)
                     }
                 }
             }
-        }
 
-        // FloatingActionButton
-        FloatingActionButton(
-            onClick = { /* Acción del FAB */ },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)  // Coloca el FAB en la esquina inferior derecha
-                .padding(16.dp)  // Margen del FAB
-//                .border(2.dp, Color.Black)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Add, // Icono de agregar
-                contentDescription = "Agregar"
-            )
+            // FloatingActionButton 0xB2FFFFFF
+            FloatingActionButton(
+                onClick = { /* Acción del FAB */ },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp)
+                    ,
+                containerColor = Color(0xB2FFFFFF)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add, // Icono de agregar
+                    contentDescription = "Agregar"
+                )
+            }
         }
     }
 }
@@ -136,9 +149,8 @@ fun PersonaCard(persona: Persona) {
         modifier = Modifier
             .padding(horizontal = 4.dp, vertical = 8.dp)
             .fillMaxWidth()
-        ,
-        shape = RoundedCornerShape(corner = CornerSize(26.dp)),
-
+            .background(Color.Transparent),
+        shape = RoundedCornerShape(corner = CornerSize(26.dp))
     ) {
         Column(
             modifier = Modifier
@@ -162,30 +174,6 @@ fun PersonaCard(persona: Persona) {
     }
 }
 
-// Composable para mostrar los detalles de un registro de salud
-//@Composable
-//fun RegistroCard(registro: RegistroSalud) {
-//    Column(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(start = 16.dp, top = 4.dp)
-//    ) {
-//        Text(
-//            text = "Presión: ${registro.presionSistolica}/${registro.presionDiastolica} mmHg",
-//            style = MaterialTheme.typography.bodySmall
-//        )
-//        Text(
-//            text = "Glucosa: ${registro.glucosa} mg/dL, Temp: ${registro.temperatura}°C",
-//            style = MaterialTheme.typography.bodySmall
-//        )
-//        if (!registro.comentarios.isNullOrEmpty()) {
-//            Text(
-//                text = "Comentarios: ${registro.comentarios}",
-//                style = MaterialTheme.typography.bodySmall
-//            )
-//        }
-//    }
-//}
 
 @Composable
 fun FloatingButton() {
