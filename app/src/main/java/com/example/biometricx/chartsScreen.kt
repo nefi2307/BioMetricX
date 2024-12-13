@@ -28,7 +28,7 @@ fun ChartsView(
     navController: NavHostController
 ){
 
-    Box(
+    Box(//dylan
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.LightGray)
@@ -68,6 +68,7 @@ fun ChartsView(
 
             Text(text= "Presión",
                 color = Color.Black)
+
             AndroidView(
                 modifier = Modifier
                     .fillMaxWidth()
