@@ -48,7 +48,7 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var isLoading by remember{ mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(false) }
     val viewModel: LoginViewModel = viewModel()
     val context = LocalContext.current
     Surface(
@@ -129,7 +129,11 @@ fun LoginScreen(
                     viewModel.loginUser(
                         email,
                         password,
-                        onSuccess = { navController.navigate("home") },
+                        onSuccess = {
+                            navController.navigate("home") {
+                                popUpTo("login") { inclusive = true }
+                            }
+                        },
                         onError = {
                             Toast.makeText(
                                 context,
@@ -137,7 +141,7 @@ fun LoginScreen(
                                 Toast.LENGTH_LONG
                             ).show()
                         },
-                        onLoading = {isLoading = it}
+                        onLoading = { isLoading = it }
                     )
                 })
                 DontHaveAccountRow(

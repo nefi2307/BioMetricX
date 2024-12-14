@@ -21,20 +21,13 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropDownSex(lista: List<String>){
-    val parentescosImportantes = listOf(
-        "Padre",
-        "Madre",
-        "Hijo",
-        "Hija",
-        "Hermano",
-        "Hermana",
-        "Abuelo",
-        "Abuela",
-        "Otro"
-    )
+fun DropDownSex(
+    lista: List<String>,
+    selectedText: String,
+    onValueChange: (String) -> Unit){
+
     var isExtended by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(lista[0]) }
+
 
     Column (
         modifier = Modifier
@@ -55,11 +48,11 @@ fun DropDownSex(lista: List<String>){
                 trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExtended) }
             )
             ExposedDropdownMenu(expanded = isExtended, onDismissRequest = {isExtended = false}) {
-                parentescosImportantes.forEachIndexed{index, text ->
+                lista.forEachIndexed{index, text ->
                     DropdownMenuItem(
                         text = { Text(text = text)},
                         onClick = {
-                            selectedText = lista[index]
+                            onValueChange(lista[index])
                             isExtended = false
                         },
                         contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
