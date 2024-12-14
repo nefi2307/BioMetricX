@@ -2,6 +2,7 @@ package com.example.biometricx.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.biometricx.di.FirebaseObjects
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -9,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class RegisterViewModel : ViewModel() {
 
-    private val firebaseAuth: FirebaseAuth = Firebase.auth
+    private val firebaseAuth: FirebaseAuth = FirebaseObjects.auth
     fun registerUser(
         email: String,
         password: String,

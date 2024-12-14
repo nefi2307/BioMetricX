@@ -39,6 +39,7 @@ import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
 @Composable
 fun WelcomeScreen(
     navController: NavHostController,
+    isLoggedIn: Boolean,
     modifier: Modifier = Modifier
 ) {
 
@@ -59,7 +60,7 @@ fun WelcomeScreen(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp)
+                .padding(24.dp)
         ) {
 
             Spacer(modifier = Modifier.weight(1f))
@@ -95,9 +96,14 @@ fun WelcomeScreen(
 
             CButton(text = "Ingresa",
                 onClick = {
-                    navController.navigate("login")
+                    if(isLoggedIn){
+                        navController.navigate("home")
+                    }
+                    else{
+                        navController.navigate("login")
+                    }
                 }
-                )
+            )
 
             Spacer(modifier = Modifier.padding(8.dp))
 
@@ -108,12 +114,13 @@ fun WelcomeScreen(
                 }
             )
 
-            DontHaveAccountRow(
-                onSignupTap = {
-                    navController.navigate("signup")
-                }
-            )
-
+            if(!isLoggedIn){
+                DontHaveAccountRow(
+                    onSignupTap = {
+                        navController.navigate("signup")
+                    }
+                )
+            }
 
 
         }
@@ -125,5 +132,5 @@ fun WelcomeScreen(
 @Preview(showBackground = true, widthDp = 320, heightDp = 640)
 @Composable
 fun WelcomeScreenPreview() {
-    WelcomeScreen(rememberNavController())
+    WelcomeScreen(rememberNavController(), false)
 }

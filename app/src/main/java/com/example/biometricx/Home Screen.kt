@@ -15,6 +15,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -69,7 +70,11 @@ val personas = listOf(
     )
 )
 @Composable
-fun PersonasList(personas: List<Persona>, navController: NavController) {
+fun PersonasList(
+    personas: List<Persona>,
+    navController: NavController,
+    onLogoutClicked: () -> Unit
+) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {
             // Imagen de fondo que cubre toda la pantalla
@@ -81,6 +86,18 @@ fun PersonasList(personas: List<Persona>, navController: NavController) {
                 alignment = Alignment.Center,
                 contentScale = ContentScale.Crop
             )
+            IconButton(
+                onClick = {onLogoutClicked()},
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.logout),
+                    contentDescription = "logout",
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(4.dp)
+                )
+            }
             // Contenido principal
             Column(
                 modifier = Modifier
@@ -99,6 +116,7 @@ fun PersonasList(personas: List<Persona>, navController: NavController) {
                         contentDescription = "Logo",
                         modifier = Modifier.size(100.dp)
                     )
+
                 }
 
                 // Texto de bienvenida
@@ -126,7 +144,7 @@ fun PersonasList(personas: List<Persona>, navController: NavController) {
 
             // FloatingActionButton 0xB2FFFFFF
             FloatingActionButton(
-                onClick = { /* Acción del FAB */ },
+                onClick = { navController.navigate("AddNewUser") },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(16.dp)
@@ -154,7 +172,7 @@ fun PersonaCard(persona: Persona) {
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+
                 .padding(8.dp)
         ) {
             Text(
@@ -165,20 +183,12 @@ fun PersonaCard(persona: Persona) {
                 text = "Edad: ${persona.edad}, Sexo: ${persona.sexo}",
                 style = MaterialTheme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.height(4.dp))
             /*Text(text = "Registros de Salud:", style = MaterialTheme.typography.bodyMedium)
         persona.registrosDeSalud.forEach { registro ->
             RegistroCard(registro)
         }*/
         }
-    }
-}
 
-
-@Composable
-fun FloatingButton() {
-    FloatingActionButton(onClick = { /*TODO*/ }) {
-        Icon(imageVector = Icons.Filled.AddCircle, contentDescription = "Añadir")
     }
 }
 
@@ -188,7 +198,7 @@ fun FloatingButton() {
 @Composable
 fun PreviewPersonasList() {
     MaterialTheme {
-        PersonasList(personas, rememberNavController())
+        PersonasList(personas, rememberNavController(),{})
     }
 }
 
