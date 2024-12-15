@@ -6,11 +6,13 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class lineChart {
     fun generateLineChart(
         lineChart: LineChart,
         dataPoints: List<Entry>,
+        xValues: List<String> = listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"),
         label: String = "Data",
         lineColor: Int = Color.BLUE,
         circleColor: Int = Color.RED
@@ -41,6 +43,8 @@ class lineChart {
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)
+                valueFormatter = IndexAxisValueFormatter(xValues)
+                labelCount= 6
             }
 
             // Disable right Y-axis
