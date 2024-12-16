@@ -1,4 +1,4 @@
-package com.example.biometricx
+package com.example.biometricx.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -18,9 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,9 +28,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.biometricx.components.CButton
-import com.example.biometricx.components.CTextField
-import com.example.biometricx.components.DropDownSex
+import com.example.biometricx.R
+import com.example.biometricx.util.CButton
+import com.example.biometricx.util.DropDownSex
 import com.example.biometricx.data.Persona
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 import com.example.biometricx.ui.viewModels.NewPersonaViewModel

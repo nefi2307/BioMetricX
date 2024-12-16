@@ -4,19 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.navigation.NavType
 
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.biometricx.ui.theme.MainApp
-import com.example.biometricx.SignupScreen
-import com.example.biometricx.WelcomeScreen
+import com.example.biometricx.ui.components.SignupScreen
+import com.example.biometricx.ui.components.WelcomeScreen
 import com.example.biometricx.di.FirebaseObjects
+import com.example.biometricx.ui.components.RegistroSaludScreen
+import com.example.biometricx.ui.components.AddNewUser
+import com.example.biometricx.ui.components.ChartsView
+import com.example.biometricx.ui.components.LoginScreen
+import com.example.biometricx.ui.components.PersonasList
 import com.google.firebase.auth.FirebaseAuth
 import com.example.biometricx.data.Persona
 
@@ -43,7 +49,7 @@ fun NavigationView() {
             isLoggedIn.value = auth.currentUser != null
         }
         firebase.addAuthStateListener(authStateListener)
-        onDispose{
+        onDispose {
             firebase.removeAuthStateListener(authStateListener)
         }
     }
@@ -52,17 +58,25 @@ fun NavigationView() {
         composable("welcome") { WelcomeScreen(navController, isLoggedIn.value) }
         composable("login") { LoginScreen(navController) }
         composable("signup") { SignupScreen(navController) }
-        composable("home"){ PersonasList(
-            personas = personas,
-            navController = navController,
-            onLogoutClicked = {
-                firebase.signOut()
-                navController.navigate("welcome"){
-                    popUpTo("home") { inclusive = true }
+        composable("home") {
+            PersonasList(
+                navController = navController,
+                onLogoutClicked = {
+                    firebase.signOut()
+                    navController.navigate("welcome") {
+                        popUpTo("home") { inclusive = true }
+                    }
                 }
-            }
-        )}
-        composable("AddNewUser"){ AddNewUser(navController)}
-        composable("charts") { ChartsView(navController)}
+            )
+        }
+        composable("AddNewUser") { AddNewUser(navController) }
+        composable("charts") { ChartsView(navController) }
+        composable(
+            "registroSalud/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getString("id") ?: ""
+            RegistroSaludScreen(navController, id = id)
+        }
     }
 }

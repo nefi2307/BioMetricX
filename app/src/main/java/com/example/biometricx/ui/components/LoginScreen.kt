@@ -1,6 +1,5 @@
-package com.example.biometricx
+package com.example.biometricx.ui.components
 
-import android.graphics.Paint.Align
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -14,8 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,9 +31,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.biometricx.components.CButton
-import com.example.biometricx.components.CTextField
-import com.example.biometricx.components.DontHaveAccountRow
+import com.example.biometricx.R
+import com.example.biometricx.util.CButton
+import com.example.biometricx.util.CTextField
+import com.example.biometricx.util.DontHaveAccountRow
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
 import com.example.biometricx.ui.viewModels.LoginViewModel

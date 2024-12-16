@@ -26,7 +26,6 @@ class chartView(context: android.content.Context) : FrameLayout(context) {
             Entry(3f, 8f),
             Entry(4f, 16f)
         )
-
         chartGenerator.generateLineChart(lineChart, dataPoints, label = "Prototype Data")
     }
 }
