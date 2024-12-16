@@ -14,7 +14,6 @@ class NewPersonaViewModel: ViewModel() {
     fun addPersona(persona: Persona, onSuccesss:() -> Unit, onError:(String) -> Unit){
         viewModelScope.launch {
             val personaId = firestore.collection("personas").document().id
-
             firestore.collection("personas").document(personaId)
                 .set(persona)
                 .addOnSuccessListener {

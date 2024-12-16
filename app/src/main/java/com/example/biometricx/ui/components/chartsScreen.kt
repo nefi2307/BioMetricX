@@ -1,4 +1,4 @@
-package com.example.biometricx
+package com.example.biometricx.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
+import com.example.biometricx.chartView
 
 @Composable
 fun ChartsView(

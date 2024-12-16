@@ -1,4 +1,4 @@
-package com.example.biometricx.components
+package com.example.biometricx.util
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

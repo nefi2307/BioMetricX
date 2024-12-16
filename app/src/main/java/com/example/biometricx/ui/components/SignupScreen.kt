@@ -1,4 +1,4 @@
-package com.example.biometricx
+package com.example.biometricx.ui.components
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -30,13 +30,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.biometricx.components.CButton
-import com.example.biometricx.components.CTextField
-import com.example.biometricx.components.CTextFieldPassword
-import com.example.biometricx.components.DontHaveAccountRow
+import com.example.biometricx.R
+import com.example.biometricx.util.CButton
+import com.example.biometricx.util.CTextField
+import com.example.biometricx.util.CTextFieldPassword
 import com.example.biometricx.ui.theme.AlegreyaFontFamily
 import com.example.biometricx.ui.theme.AlegreyaSansFontFamily
 import com.example.biometricx.ui.viewModels.RegisterViewModel
