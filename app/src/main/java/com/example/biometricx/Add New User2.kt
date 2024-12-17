@@ -99,7 +99,7 @@ fun Screen(navController: NavController) {
                 Column {
                     Text(
                         text = "    Nombre",
-                        style = TextStyle(
+                         style = TextStyle(
                             fontSize = 28.sp,
                             fontFamily = AlegreyaFontFamily,
                             fontWeight = FontWeight(500),
