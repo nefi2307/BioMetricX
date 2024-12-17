@@ -180,7 +180,8 @@ fun Screen(navController: NavController) {
                         val persona = Persona(
                             nombre = namePerson,
                             edad = age.toInt(),
-                            sexo = sex
+                            sexo = sex,
+                            parentesco = parentesco
                         )
                         addViewModel.addPersona(
                             persona,

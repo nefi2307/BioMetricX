@@ -60,21 +60,21 @@ fun ChartsView(
             Text(text= "Glucosa",
                 color = Color.Black)
 
-            AndroidView(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp),
-                factory = { context -> chartView(context) }
-            )
+//            AndroidView(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(300.dp),
+//                factory = { context -> chartView(context) }
+//            )
 
             Text(text= "Presión",
                 color = Color.Black)
-            AndroidView(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp),
-                factory = { context -> chartView(context) }
-            )
+//            AndroidView(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(300.dp),
+//                factory = { context -> chartView(context) }
+//            )
 
             Spacer(modifier = Modifier.padding(16.dp))
 

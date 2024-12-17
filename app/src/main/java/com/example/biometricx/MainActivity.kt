@@ -29,7 +29,7 @@ import com.example.biometricx.data.Persona
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContent {
             MainApp {
                 NavigationView()
@@ -59,7 +59,7 @@ fun NavigationView() {
         composable("login") { LoginScreen(navController) }
         composable("signup") { SignupScreen(navController) }
         composable("home") {
-            PersonasList(
+            PersonasList2(
                 navController = navController,
                 onLogoutClicked = {
                     firebase.signOut()
@@ -69,14 +69,21 @@ fun NavigationView() {
                 }
             )
         }
-        composable("AddNewUser") { AddNewUser(navController) }
+        composable("AddNewUser") { AddNewUser2(navController) }
         composable("charts") { ChartsView(navController) }
         composable(
             "registroSalud/{id}",
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id") ?: ""
-            RegistroSaludScreen(navController, id = id)
+            BasicInformationUser(id = id, navController)
+        }
+        composable(
+            "altaRegistroSalud/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getString("id") ?: ""
+            RegistroSaludScreen(navController, id)
         }
     }
 }

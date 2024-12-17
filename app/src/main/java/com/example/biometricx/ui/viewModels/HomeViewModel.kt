@@ -2,7 +2,6 @@ package com.example.biometricx.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.biometricx.data.HomeUIState
 import com.example.biometricx.data.Persona
 import com.example.biometricx.di.FirebaseObjects
 import kotlinx.coroutines.delay
@@ -42,7 +41,11 @@ class HomeViewModel:ViewModel() {
                 }
         }
     }
-
-
 }
+
+data class HomeUIState(
+    val personas: List<Pair<String,Persona>> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
 

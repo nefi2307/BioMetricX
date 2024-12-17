@@ -19,7 +19,8 @@ data class RegistroSalud(
 data class Persona(
     val nombre: String,
     val edad: Int, // Edad en años
-    val sexo: String, // Sexo (M/F/O)
+    val sexo: String, // Sexo (M/F/O),
+    val parentesco: String
 ){
-    constructor() : this("", 0, "")
+    constructor() : this("", 0, "","")
 }
