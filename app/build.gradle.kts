@@ -74,6 +74,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose.android)
 
+    //boarind
+    implementation("com.google.accompanist:accompanist-pager:0.15.0")
+    implementation("com.airbnb.android:lottie-compose:5.2.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+
 
 
     testImplementation(libs.junit)

@@ -238,6 +238,6 @@ fun UserBox(
     ) {
         CButton(text = "Registrar glucosa y presión", onClick = {onButtonAltaRegistroPressed()})
         Spacer(modifier = Modifier.padding(4.dp))
-        CButton(text = "Borrar")
+        //CButton(text = "Borrar")
     }
 }

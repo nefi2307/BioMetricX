@@ -10,7 +10,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
 class lineChart {
     fun generateLineChart(
-        lineChart: LineChart,
+          lineChart: LineChart,
         dataPoints: List<Entry>,
         xValues: List<String> = listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"),
         label: String = "Data",
